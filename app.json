@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/task_manager/task_manager",
+    "pages/user_manager/user_manager",
+    "pages/task_submit/task_submit"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "爆款平台",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "任务大厅"
+      },
+      {
+        "pagePath": "pages/task_manager/task_manager",
+        "text": "任务管理"
+      },
+      {
+        "pagePath": "pages/task_submit/task_submit",
+        "text": "任务发布"
+      },
+      {
+        "pagePath": "pages/user_manager/user_manager",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}

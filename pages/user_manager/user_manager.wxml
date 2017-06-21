@@ -1,0 +1,35 @@
+<view class="page">
+  <view bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <text class="userinfo-nickname">微信号</text>
+  </view>
+
+  <view class="page__bd page__bd_spacing">
+    <view class="kind-list">
+      <view class="kind-list__item">
+        <view class="weui-flex kind-list__item-hd kind-list__item-hd_show" id="form">
+          <view class="weui-flex__item">设置</view>
+          <image class="kind-list__img" src="/images/icon_nav_form.png"></image>
+          <view class="weui-flex__item">个人信息</view>
+          <image class="kind-list__img" src="/images/icon_nav_form.png"></image>
+          <view class="weui-flex__item">我的金币</view>
+          <image class="kind-list__img" src="/images/icon_nav_form.png"></image>
+          <view class="weui-flex__item">提现</view>
+          <image class="kind-list__img" src="/images/icon_nav_form.png"></image>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-footer weui-footer_fixed-bottom">
+      <view class="weui-footer__links">
+        <navigator url="" class="weui-footer__link">爆款平台</navigator>
+      </view>
+      <view class="weui-footer__text">Copyright © 2008-2016 cygeagle</view>
+    </view>
+    <view class="page__ft">
+      <image src="/images/icon_footer.png" style="width: 84px; height: 19px;">
+      </image>
+    </view>
+  </view>
+</view>
