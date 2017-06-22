@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/task_manager/task_manager",
     "pages/user_manager/user_manager",
-    "pages/task_submit/task_submit"
+    "pages/task_submit/task_submit",
+    "pages/user_manager/register/register"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -16,18 +17,26 @@
     "list": [
       {
         "pagePath": "pages/index/index",
+        "iconPath": "/images/index.png",
+        "selectedIconPath": "/images/index.png",
         "text": "任务大厅"
       },
       {
         "pagePath": "pages/task_manager/task_manager",
+        "iconPath": "/images/task.png",
+        "selectedIconPath": "/images/task.png",
         "text": "任务管理"
       },
       {
         "pagePath": "pages/task_submit/task_submit",
+        "iconPath": "/images/submit.png",
+        "selectedIconPath": "/images/submit.png",
         "text": "任务发布"
       },
       {
         "pagePath": "pages/user_manager/user_manager",
+        "iconPath": "/images/my.png",
+        "selectedIconPath": "/images/my.png",
         "text": "个人中心"
       }
     ]
