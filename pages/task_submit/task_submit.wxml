@@ -44,7 +44,7 @@
       <view class="weui-cells__title">单数总量</view>
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__bd">
-          <input class="weui-input" name="最多9单" type="number" placeholder="最多9单" />
+          <input class="weui-input" name="taskCount" type="number" placeholder="最多9单" />
         </view>
       </view>
 

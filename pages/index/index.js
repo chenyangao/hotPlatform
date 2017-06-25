@@ -26,5 +26,14 @@ Page({
     this.setData({
       inputVal: e.detail.value
     });
+  },
+  kindToggle: function (e) {
+    var list = wx.getStorageSync("tesks");
+    for (var i = 0, len = list.length; i < len; ++i) {
+     
+    }
+    this.setData({
+      list: list
+    });
   }
 });

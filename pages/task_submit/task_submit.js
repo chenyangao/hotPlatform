@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    tasks: [],
     showTopTips: false,
     radioItems: [
       { name: '电脑单', value: '0', checked: true },
@@ -62,6 +63,11 @@ Page({
       { name: '双', value: '1' }
     ],
     jobTypesIndex: 0,
+    linkTypesIndex: 0,
+    taskTimeIndex: 0,
+    comparativeOptIndex: 0,
+    favoritesOptIndex: 0,
+    chatOptIndex: 0,
     isAgree: false
   },
 
@@ -133,7 +139,6 @@ Page({
   },
   radioChange: function (e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value);
-
     var radioItems = this.data.radioItems;
     for (var i = 0, len = radioItems.length; i < len; ++i) {
       radioItems[i].checked = radioItems[i].value == e.detail.value;
@@ -145,11 +150,9 @@ Page({
   },
   checkboxChange: function (e) {
     console.log('checkbox发生change事件，携带value值为：', e.detail.value);
-
     var checkboxItems = this.data.checkboxItems, values = e.detail.value;
     for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
       checkboxItems[i].checked = false;
-
       for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
         if (checkboxItems[i].value == values[j]) {
           checkboxItems[i].checked = true;
@@ -203,6 +206,9 @@ Page({
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     var that = this;
     var formData = e.detail.value;
+    var tasks = wx.getStorageSync('tasks') || [] 
+    tasks.unshift(formData)
+    wx.setStorageSync('tasks', tasks)
     wx.setStorage({
       key: Date.now().toString(),
       data: formData
