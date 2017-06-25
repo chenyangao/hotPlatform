@@ -5,7 +5,8 @@
     "pages/task_manager/task_manager",
     "pages/user_manager/user_manager",
     "pages/task_submit/task_submit",
-    "pages/user_manager/register/register"
+    "pages/user_manager/register/register",
+    "pages/user_manager/register/terms/terms"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -25,7 +26,7 @@
         "pagePath": "pages/task_manager/task_manager",
         "iconPath": "/images/task.png",
         "selectedIconPath": "/images/task.png",
-        "text": "任务管理"
+        "text": "我的任务"
       },
       {
         "pagePath": "pages/task_submit/task_submit",

@@ -1,27 +1,67 @@
+var util = require('../../utils/util.js')
 // task_submit.js
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     showTopTips: false,
     radioItems: [
-      { name: 'cell standard', value: '0' },
-      { name: 'cell standard', value: '1', checked: true }
+      { name: '电脑单', value: '0', checked: true },
+      { name: '手机单', value: '1' },
+      { name: '秒单', value: '2' }
+    ],
+    radioItems2: [
+      { name: '单', value: '0', checked: true },
+      { name: '双', value: '1' }
     ],
     checkboxItems: [
-      { name: 'standard is dealt for u.', value: '0', checked: true },
-      { name: 'standard is dealicient for u.', value: '1' }
+      { name: '白号', value: '0', checked: true },
+      { name: '一星', value: '1' },
+      { name: '二星', value: '2' },
+      { name: '三星', value: '3' },
+      { name: '四星', value: '4' },
+      { name: '五星', value: '5' },
+      { name: '一钻', value: '6' },
+      { name: '二钻', value: '7' },
+      { name: '三钻', value: '8' },
+      { name: '四钻', value: '9' },
+      { name: '五钻', value: '10' },
+      { name: '一冠', value: '11' },
+      { name: '二冠', value: '12' }
     ],
-    date: "2016-09-01",
-    time: "12:01",
-    countryCodes: ["+86", "+80", "+84", "+87"],
-    countryCodeIndex: 0,
-    countries: ["中国", "美国", "英国"],
-    countryIndex: 0,
-    accounts: ["微信号", "QQ", "Email"],
-    accountIndex: 0,
+    taskTimeRadioItems: [
+      { name: '不过滤', value: '0', checked: true },
+      { name: '十五天内接过不要', value: '1' },
+      { name: '二十天内接过不要', value: '2' },
+      { name: '三十天内接过不要', value: '3' }
+    ],
+    comparativeOptRadioItems: [
+      { name: '不货比', value: '0', checked: true },
+      { name: '货比一家', value: '1' },
+      { name: '货比二家', value: '2' },
+      { name: '货比三家', value: '2' },
+      { name: '货比四家', value: '2' },
+      { name: '货比五家', value: '3' }
+    ],
+    favoritesOptRadioItems: [
+      { name: '不收藏', value: '0', checked: true },
+      { name: '收藏', value: '1' }
+    ],
+    chatOptRadioItems: [
+      { name: '不假聊', value: '0', checked: true },
+      { name: '假聊', value: '1' }
+    ],
+    showTopTips: false,
+    jobTypes: [{ name: '电脑单', value: '0', checked: true },
+    { name: '手机单', value: '1' },
+    { name: '秒单', value: '2' }],
+    countries: ["北京", "上海", "广州", "重庆", "浙江", "江苏"],
+    linkTypes: [
+      { name: '单', value: '0', checked: true },
+      { name: '双', value: '1' }
+    ],
+    jobTypesIndex: 0,
     isAgree: false
   },
 
@@ -122,40 +162,74 @@ Page({
       checkboxItems: checkboxItems
     });
   },
-  bindDateChange: function (e) {
-    this.setData({
-      date: e.detail.value
-    })
-  },
-  bindTimeChange: function (e) {
-    this.setData({
-      time: e.detail.value
-    })
-  },
-  bindCountryCodeChange: function (e) {
-    console.log('picker country code 发生选择改变，携带值为', e.detail.value);
-
-    this.setData({
-      countryCodeIndex: e.detail.value
-    })
-  },
-  bindCountryChange: function (e) {
+  bindJobTypesChange: function (e) {
     console.log('picker country 发生选择改变，携带值为', e.detail.value);
 
     this.setData({
-      countryIndex: e.detail.value
+      jobTypesIndex: e.detail.value
     })
   },
-  bindAccountChange: function (e) {
-    console.log('picker account 发生选择改变，携带值为', e.detail.value);
-
+  bindlinkTypesChange: function (e) {
+    console.log('picker bindlinkTypesChange 发生选择改变，携带值为', e.detail.value);
     this.setData({
-      accountIndex: e.detail.value
+      linkTypesIndex: e.detail.value
     })
+  },
+  bindtaskTimeChange: function (e) {
+    console.log('picker bindtaskTimeChange 发生选择改变，携带值为', e.detail.value);
+    this.setData({
+      taskTimeIndex: e.detail.value
+    })
+  },
+  bindComparativeOptChange: function (e) {
+    console.log('picker comparativeOpt 发生选择改变，携带值为', e.detail.value);
+    this.setData({
+      comparativeOptIndex: e.detail.value
+    })
+  },
+  bindfavoritesOptChange: function (e) {
+    console.log('picker favoritesOpt 发生选择改变，携带值为', e.detail.value);
+    this.setData({
+      favoritesOptIndex: e.detail.value
+    })
+  },
+  bindChatOptChange: function (e) {
+    console.log('picker bindChatOptChange 发生选择改变，携带值为', e.detail.value);
+    this.setData({
+      chatOptIndex: e.detail.value
+    })
+  },
+  formSubmit: function (e) {
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    var that = this;
+    var formData = e.detail.value;
+    wx.setStorage({
+      key: Date.now().toString(),
+      data: formData
+    })
+    wx.request({
+      url: 'http://localhost:8080/mvc/postJson',
+      data: formData,
+      //JSON.stringify(obj), 
+      method: 'POST',
+      header: {
+        //'Content-Type': 'application/json'
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      },
+      success: function (res) {
+        console.log(res.data);
+      }
+    })
+  },
+
+  formReset: function () {
+    console.log('form发生了reset事件');
   },
   bindAgreeChange: function (e) {
     this.setData({
       isAgree: !!e.detail.value.length
     });
-  }
+  },
+
+
 })

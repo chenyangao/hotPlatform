@@ -1,1 +1,4 @@
 /* task_submit.wxss */
+.weui-form-preview{
+    margin-bottom: 25px;
+}
