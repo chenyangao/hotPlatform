@@ -70,15 +70,19 @@ Page({
     sliderLeft: 0
   },
   onLoad: function () {
-    var that = this;
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          sliderLeft: (res.windowWidth / that.data.tabs.length) / 2,
-          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
-        });
-      }
-    });
+    var that = this//不要漏了这句，很重要
+    console.log("加载数据"),
+      that.setData({
+        list: wx.getStorageSync("tasks"),
+      })
+  },
+  onShow: function () {
+    var that = this//不要漏了这句，很重要
+    var list = wx.getStorageSync("tasks");
+    console.log("展示数据"),
+      that.setData({
+        list: list
+      })
   },
   tabClick: function (e) {
     this.setData({

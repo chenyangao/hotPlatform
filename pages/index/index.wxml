@@ -1,6 +1,6 @@
 <view class="page">
   <view class="page__bd">
-  
+
     <view class="weui-search-bar">
       <view class="weui-search-bar__form">
         <view class="weui-search-bar__box">
@@ -17,6 +17,7 @@
       </view>
       <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
     </view>
+
     <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
       <navigator url="" class="weui-cell" hover-class="weui-cell_active">
         <view class="weui-cell__bd">
@@ -39,51 +40,60 @@
         </view>
       </navigator>
     </view>
-  </view>
 
-  <view class="page__bd">
 
-<block wx:for-items="{{list}}" wx:for-item="item" wx:key="*this" > 
-       <view class="weui-form-preview__hd">
-        <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">任务金币</view>
-          <view class="weui-form-preview__value_in-hd">{{item.jobType}}</view>
+
+    <block wx:for-items="{{list}}" wx:for-item="item" wx:key="*this">
+      <view class="weui-form-preview">
+
+        <view class="weui-form-preview__hd">
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">任务金币</view>
+            <view class="weui-form-preview__value_in-hd">{{item.jobType}}</view>
+          </view>
         </view>
+
+        <view class="weui-form-preview__bd">
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">任务类型</view>
+            <view class="weui-form-preview__value">{{item.jobType}}</view>
+          </view>
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">小号</view>
+            <view class="weui-form-preview__value">{{item.userLevel}}</view>
+          </view>
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">任务要求</view>
+            <view class="weui-form-preview__value">{{item.otherOpt}}</view>
+          </view>
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">发布时间</view>
+            <view class="weui-form-preview__value">{{item.taskTime}}</view>
+          </view>
+
+          <view class="weui-media-box__info">
+            <view class="weui-media-box__info__meta">发布人</view>
+            <view class="weui-media-box__info__meta">发布时间</view>
+            <view class="weui-form-preview__value">{{userInfo.nickName}}</view>
+            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>
+          </view>
+
+          <view class="weui-form-preview__ft">
+            <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">直接领取</navigator>
+            <navigator url="" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">查看详情</navigator>
+          </view>
+
+        </view>
+
       </view>
-      <view class="weui-form-preview__bd">
-        <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">任务类型</view>
-          <view class="weui-form-preview__value">{{item.jobType}}</view>
-        </view>
-        <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">小号</view>
-          <view class="weui-form-preview__value">{{item.userLevel}}</view>
-        </view>
-        <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">任务要求</view>
-          <view class="weui-form-preview__value">{{item.otherOpt}}</view>
-        </view>
-        <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">发布时间</view>
-          <view class="weui-form-preview__value">{{item.taskTime}}</view>
-        </view>
-
-        <view class="weui-media-box__info">
-          <view class="weui-media-box__info__meta">发布人</view>
-          <view class="weui-media-box__info__meta">发布时间</view>
-          <view class="weui-form-preview__value">{{userInfo.nickName}}</view>
-          <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>
-        </view>
-
-       <view class="weui-form-preview__ft">
-        <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">直接领取</navigator>
-        <navigator url="" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">查看详情</navigator>
-      </view>
-
-
-    </view>
 
     </block>
-     
+
+
+
+
+
+
   </view>
+
 </view>
