@@ -6,6 +6,21 @@ Page({
     inputShowed: false,
     inputVal: ""
   },
+  onLoad: function () {
+    var that = this//不要漏了这句，很重要
+    console.log("加载数据"),
+      that.setData({
+      list: wx.getStorageSync("tasks"),
+    })
+  },
+  onShow:function(){
+    var that = this//不要漏了这句，很重要
+    var list = wx.getStorageSync("tasks");
+    console.log("展示数据"),
+      that.setData({
+      list: list
+      })
+  },
   showInput: function () {
     this.setData({
       inputShowed: true
