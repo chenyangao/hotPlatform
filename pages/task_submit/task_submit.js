@@ -68,7 +68,8 @@ Page({
     comparativeOptIndex: 0,
     favoritesOptIndex: 0,
     chatOptIndex: 0,
-    isAgree: false
+    isAgree: false,
+    isdisabled:true
   },
 
   /**
@@ -202,31 +203,59 @@ Page({
       chatOptIndex: e.detail.value
     })
   },
-  formSubmit: function (e) {
+  formSubmit:function (e) { 
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     var that = this;
-    var formData = e.detail.value;
-    var tasks = wx.getStorageSync('tasks') || [] 
-    tasks.unshift(formData)
-    wx.setStorageSync('tasks', tasks)
-    wx.setStorage({
-      key: Date.now().toString(),
-      data: formData
-    })
-    wx.request({
-      url: 'http://localhost:8080/mvc/postJson',
-      data: formData,
-      //JSON.stringify(obj), 
-      method: 'POST',
-      header: {
-        //'Content-Type': 'application/json'
-        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      },
-      success: function (res) {
-        console.log(res.data);
-      }
-    })
-  },
+    var formData = e.detail.value; 
+      wx.showModal({
+        title: '确定注册',
+        content: '注册后充值保证金后方可发单、接单！',
+        confirmText: "确定",
+        cancelText: "取消",
+        success: function (res) {
+          console.log(res);
+          if (res.confirm) {
+            console.log('确定')
+            formData.id = Date.now().toString();
+            var tasks = wx.getStorageSync('tasks') || []
+            tasks.unshift(formData)
+            wx.setStorageSync('tasks', tasks)
+            wx.setStorage({
+              key: Date.now().toString(),
+              data: formData,
+              success: function (res) {
+                console.log('异步保存成功')
+              }
+            })
+            wx.request({
+              url: 'http://localhost:8080/mvc/postJson',
+              data: formData,
+              //JSON.stringify(obj), 
+              method: 'POST',
+              header: {
+                //'Content-Type': 'application/json'
+                'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+              },
+              success: function (res) {
+                console.log(res.data);
+              }
+            })
+
+            wx.showToast({
+              title: '发布成功',
+              icon: 'success',
+              duration: 3000
+            });
+            wx.navigateTo({
+              url: 'pages/index/index'
+            });
+          } else {
+            console.log('取消')
+          }
+        }
+      });
+
+    } ,
 
   formReset: function () {
     console.log('form发生了reset事件');
@@ -235,7 +264,10 @@ Page({
     this.setData({
       isAgree: !!e.detail.value.length
     });
+    this.setData({
+      isdisabled: false
+    })
+    console.log(e.currentTarget.dataset.text);
   },
-
 
 })

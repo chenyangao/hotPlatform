@@ -110,31 +110,53 @@ Page({
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     var that = this;
     var formData = e.detail.value;
-
     if (e.detail.value.user_no.length > 0 && e.detail.value.password.length > 0) {
       console.log('key:' + formData.user_no);
-      wx.setStorage({
-        key: formData.user_no,
-        data: formData
-      })
-      this.setData({
+      that.setData({
         tip: '',
         showTopTips: false
       })
-      wx.request({
-        url: 'http://localhost:8080/mvc/postJson',
-        data: formData,
-        //JSON.stringify(obj), 
-        method: 'POST',
-        header: {
-          //'Content-Type': 'application/json'
-          'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        },
+      wx.showModal({
+        title: '确定注册',
+        content: '注册后充值保证金后方可发单、接单！',
+        confirmText: "确定",
+        cancelText: "取消",
         success: function (res) {
-          console.log(res.data);
-          that.modalTap();
+          console.log(res);
+          if (res.confirm) {
+            console.log('确定')
+            wx.setStorage({
+              key: formData.user_no,
+              data: formData
+            })
+            wx.request({
+              url: 'http://localhost:8080/mvc/postJson',
+              data: formData,
+              //JSON.stringify(obj), 
+              method: 'POST',
+              header: {
+                //'Content-Type': 'application/json'
+                'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+              },
+              success: function (res) {
+                console.log(res.data);
+                that.modalTap();
+              }
+            })
+            wx.showToast({
+              title: '保存成功',
+              icon: 'success',
+              duration: 3000
+            });
+            wx.navigateTo({
+              url: 'pages/index/index'
+            });
+          } else {
+            console.log('取消')
+          }
         }
-      })
+      });
+
     } else {
       this.setData({
         tip: '用户名和密码不能为空！',

@@ -138,7 +138,7 @@
       </checkbox-group>
 
       <view class="weui-btn-area">
-        <button class="weui-btn" formType="submit">发布任务</button>
+        <button class="weui-btn" name="submit" formType="submit" disabled="{{isdisabled}}">发布任务</button>
         <button class="weui-btn" formType="reset">重新填写</button>
       </view>
     </view>
