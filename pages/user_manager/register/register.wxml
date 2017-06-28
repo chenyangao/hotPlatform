@@ -119,13 +119,13 @@
               <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
             </view>
             阅读并同意
-            <navigator url="pages/user_manager/register/terms/terms" class="weui-agree__link">《相关条款》</navigator>
+            <navigator url="/pages/user_manager/register/terms/terms" class="weui-agree__link">《相关条款》</navigator>
           </view>
         </label>
       </checkbox-group>
 
       <view class="weui-btn-area">
-        <button class="weui-btn" formType="submit">确定</button>
+        <button class="weui-btn" formType="submit" disabled="{{isdisabled}}">确定</button>
         <button class="weui-btn" formType="reset">重新填写</button>
       </view>
     </view>

@@ -6,7 +6,9 @@
     "pages/user_manager/user_manager",
     "pages/task_submit/task_submit",
     "pages/user_manager/register/register",
-    "pages/user_manager/register/terms/terms"
+    "pages/user_manager/register/terms/terms",
+    "pages/task_submit/terms/terms",
+    "pages/task_manager/task_detail/task_detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -43,7 +43,7 @@
 
 
 
-    <block wx:for-items="{{list}}" wx:for-item="item" wx:key="*this">
+    <block wx:for-items="{{list}}" wx:for-item="item" wx:key="id">
       <view class="weui-form-preview">
 
         <view class="weui-form-preview__hd">
@@ -80,7 +80,7 @@
 
           <view class="weui-form-preview__ft">
             <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">直接领取</navigator>
-            <navigator url="" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">查看详情</navigator>
+            <navigator url="/pages/task_manager/task_detail/task_detail?id={{item.id}}" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">查看详情</navigator>
           </view>
 
         </view>

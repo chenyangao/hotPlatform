@@ -11,7 +11,8 @@ Page({
     modalHidden: true,
     modalHidden2: true,
     notice_str: '',
-    isAgree: false
+    isAgree: false,
+    isdisabled: true
   },
 
   toast1Change: function (e) {
@@ -172,12 +173,8 @@ Page({
     this.setData({
       isAgree: !!e.detail.value.length
     });
-  },
-  bindCountryChange: function (e) {
-    console.log('picker country 发生选择改变，携带值为', e.detail.value);
     this.setData({
-      countryIndex: e.detail.value
+      isdisabled: !this.data.isAgree
     })
   }
-
 })

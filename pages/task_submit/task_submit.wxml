@@ -132,7 +132,7 @@
               <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
             </view>
             阅读并同意
-            <navigator url="pages/user_manager/register/terms/terms" class="weui-agree__link">《相关条款》</navigator>
+            <navigator url="/pages/task_submit/terms/terms" class="weui-agree__link">《相关条款》</navigator>
           </view>
         </label>
       </checkbox-group>

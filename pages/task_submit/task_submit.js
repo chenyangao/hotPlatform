@@ -216,12 +216,13 @@ Page({
           console.log(res);
           if (res.confirm) {
             console.log('确定')
-            formData.id = Date.now().toString();
+            var id = Date.now().toString();
+            formData.id = id;
             var tasks = wx.getStorageSync('tasks') || []
             tasks.unshift(formData)
             wx.setStorageSync('tasks', tasks)
             wx.setStorage({
-              key: Date.now().toString(),
+              key: id,
               data: formData,
               success: function (res) {
                 console.log('异步保存成功')
@@ -247,7 +248,7 @@ Page({
               duration: 3000
             });
             wx.navigateTo({
-              url: 'pages/index/index'
+              url: '/pages/index/index'
             });
           } else {
             console.log('取消')
@@ -265,7 +266,7 @@ Page({
       isAgree: !!e.detail.value.length
     });
     this.setData({
-      isdisabled: false
+      isdisabled: !this.data.isAgree
     })
     console.log(e.currentTarget.dataset.text);
   },
