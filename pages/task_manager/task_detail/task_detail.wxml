@@ -1,0 +1,46 @@
+<!--task_detail.wxml-->
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+
+  <view class="weui-form-preview">
+
+    <view class="weui-form-preview__hd">
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">任务金币</view>
+        <view class="weui-form-preview__value_in-hd">{{task.jobType}}</view>
+      </view>
+    </view>
+
+    <view class="weui-form-preview__bd">
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">任务类型</view>
+        <view class="weui-form-preview__value">{{task.jobType}}</view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">小号</view>
+        <view class="weui-form-preview__value">{{task.userLevel}}</view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">任务要求</view>
+        <view class="weui-form-preview__value">{{task.otherOpt}}</view>
+      </view>
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">发布时间</view>
+        <view class="weui-form-preview__value">{{task.taskTime}}</view>
+      </view>
+
+      <view class="weui-media-box__info">
+        <view class="weui-media-box__info__meta">发布人:</view>
+        <view class="weui-media-box__info__meta">发布时间：</view>
+        <view class="weui-media-box__info__meta">{{item.jobType}}</view>
+        <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>
+      </view>
+
+      <view class="weui-form-preview__ft">
+        <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">举报</navigator>
+        <navigator url="" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">领取任务</navigator>
+      </view>
+
+    </view>
+  </view>
+
+</view>
