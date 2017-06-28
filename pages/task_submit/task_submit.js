@@ -228,6 +228,14 @@ Page({
                 console.log('异步保存成功')
               }
             })
+            wx.showToast({
+              title: '发布成功',
+              icon: 'success',
+              duration: 3000
+            });
+            wx.navigateTo({
+              url: '/pages/index/index'
+            });
             wx.request({
               url: 'http://localhost:8080/mvc/postJson',
               data: formData,
@@ -242,14 +250,7 @@ Page({
               }
             })
 
-            wx.showToast({
-              title: '发布成功',
-              icon: 'success',
-              duration: 3000
-            });
-            wx.navigateTo({
-              url: '/pages/index/index'
-            });
+  
           } else {
             console.log('取消')
           }
