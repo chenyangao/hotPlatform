@@ -233,7 +233,7 @@ Page({
               icon: 'success',
               duration: 3000
             });
-            wx.navigateTo({
+            wx.switchTab({
               url: '/pages/index/index'
             });
             wx.request({

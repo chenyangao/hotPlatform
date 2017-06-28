@@ -17,6 +17,13 @@
         </view>
       </view>
 
+            <view class="weui-cells__title">单数总量</view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <input class="weui-input" name="taskCount" type="digit" placeholder="最多9单" />
+        </view>
+      </view>
+
       <view class="weui-cells__title">链接</view>
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_select">
@@ -40,13 +47,6 @@
           <view class="weui-cell__bd">{{item.name}}</view>
         </label>
       </checkbox-group>
-
-      <view class="weui-cells__title">单数总量</view>
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__bd">
-          <input class="weui-input" name="taskCount" type="number" placeholder="最多9单" />
-        </view>
-      </view>
 
       <view class="weui-cells__title">过滤条件</view>
       <view class="weui-cell weui-cell_select">

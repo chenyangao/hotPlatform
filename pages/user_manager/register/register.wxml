@@ -15,7 +15,7 @@
             <view class="weui-label">手机号</view>
           </view>
           <view class="weui-cell__bd">
-            <input type="number" name="user_no" maxlength="11" class="weui-input"  auto-focus />
+            <input type="digit" name="user_no" maxlength="11" class="weui-input"  auto-focus />
           </view>
         </view> 
 
@@ -28,7 +28,7 @@
             <view class="weui-label">验证码</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" type="number" name="identifying_code" maxlength="4" placeholder="填写收到的4位验证妈" />
+            <input class="weui-input" type="digit" name="identifying_code" maxlength="4" placeholder="填写收到的4位验证妈" />
           </view>
           <view class="weui-cell__ft">
             <view class="weui-vcode-btn">获取验证码</view>
@@ -73,7 +73,7 @@
           <view class="weui-label">IS语音账号(*)</view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" type="number" placeholder="您正在使用中的有效手机号" />
+          <input class="weui-input" type="digit" placeholder="您正在使用中的有效手机号" />
         </view>
         <view class="weui-cell__ft">
           <icon type="warn" size="23" color="#E64340"></icon>
@@ -83,7 +83,7 @@
       <view class="weui-cells__title">QQ号码(*)</view>
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__bd">
-          <input class="weui-input" type="number" placeholder="请填写入会IS的QQ号码" />
+          <input class="weui-input" type="digit" placeholder="请填写入会IS的QQ号码" />
         </view>
       </view>
 
