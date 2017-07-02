@@ -4,7 +4,6 @@
     <view class="page__bd">
       <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
 
-
       <view class="weui-cells__title">任务类型</view>
       <view class="weui-cells weui-cells_after-title">
 
@@ -17,7 +16,14 @@
         </view>
       </view>
 
-            <view class="weui-cells__title">单数总量</view>
+    <view class="weui-cells__title">每单金币数</view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <input class="weui-input" name="goldCoinSum" type="digit" placeholder="输入每单的金额" />
+        </view>
+      </view>
+
+    <view class="weui-cells__title">单数总量</view>
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__bd">
           <input class="weui-input" name="taskCount" type="digit" placeholder="最多9单" />
@@ -89,7 +95,7 @@
       <view class="weui-cells__title">浏览时间</view>
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__bd">
-          <input class="weui-input" name="browseTime" type="number" placeholder="分钟" />
+          <input class="weui-input" name="browseTime" type="digit" placeholder="分钟" />
         </view>
       </view>
 
@@ -106,7 +112,7 @@
       <view class="weui-cells__title">垫付本金</view>
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__bd">
-          <input class="weui-input" name="advancePrincipal" type="number" placeholder="仅支持100以内的小额垫付" />
+          <input class="weui-input" name="advancePrincipal" type="digit" placeholder="仅支持100以内的小额垫付" />
         </view>
         <view class="weui-cell__ft">
           <icon type="warn" size="23" color="#E64340"></icon>
@@ -116,7 +122,7 @@
       <view class="weui-cells__title">每单追加本金(*)</view>
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__bd">
-          <input class="weui-input" name="additionalPrincipal" type="number" placeholder="可不追加,最小追加0.5，最大追加9" />
+          <input class="weui-input" name="additionalPrincipal" type="digit" placeholder="可不追加,最小追加0.5，最大追加9" />
         </view>
         <view class="weui-cell__ft">
           <icon type="warn" size="23" color="#E64340"></icon>
@@ -141,6 +147,8 @@
         <button class="weui-btn" name="submit" formType="submit" disabled="{{isdisabled}}">发布任务</button>
         <button class="weui-btn" formType="reset">重新填写</button>
       </view>
+
     </view>
+
   </form>
 </view>

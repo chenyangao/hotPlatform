@@ -1,4 +1,5 @@
 var util = require('../../utils/util.js')
+var app = getApp()
 // task_submit.js
 Page({
   /**
@@ -7,6 +8,7 @@ Page({
   data: {
     tasks: [],
     showTopTips: false,
+    userInfo: {},
     radioItems: [
       { name: '电脑单', value: '0', checked: true },
       { name: '手机单', value: '1' },
@@ -41,9 +43,9 @@ Page({
       { name: '不货比', value: '0', checked: true },
       { name: '货比一家', value: '1' },
       { name: '货比二家', value: '2' },
-      { name: '货比三家', value: '2' },
-      { name: '货比四家', value: '2' },
-      { name: '货比五家', value: '3' }
+      { name: '货比三家', value: '3' },
+      { name: '货比四家', value: '4' },
+      { name: '货比五家', value: '5' }
     ],
     favoritesOptRadioItems: [
       { name: '不收藏', value: '0', checked: true },
@@ -69,14 +71,22 @@ Page({
     favoritesOptIndex: 0,
     chatOptIndex: 0,
     isAgree: false,
-    isdisabled:true
+    isdisabled: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log('onLoad')
+    var that = this
+    //调用应用实例的方法获取全局数据
+    app.getUserInfo(function (userInfo) {
+      //更新数据
+      that.setData({
+        userInfo: userInfo
+      })
+    })
   },
 
   /**
@@ -172,6 +182,16 @@ Page({
     this.setData({
       jobTypesIndex: e.detail.value
     })
+
+    wx.showActionSheet({
+      itemList: ['A', 'B', 'C'],
+      success: function (res) {
+        if (!res.cancel) {
+          console.log(res.tapIndex)
+        }
+      }
+    });
+
   },
   bindlinkTypesChange: function (e) {
     console.log('picker bindlinkTypesChange 发生选择改变，携带值为', e.detail.value);
@@ -203,61 +223,58 @@ Page({
       chatOptIndex: e.detail.value
     })
   },
-  formSubmit:function (e) { 
+  formSubmit: function (e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     var that = this;
-    var formData = e.detail.value; 
-      wx.showModal({
-        title: '确定注册',
-        content: '注册后充值保证金后方可发单、接单！',
-        confirmText: "确定",
-        cancelText: "取消",
-        success: function (res) {
-          console.log(res);
-          if (res.confirm) {
-            console.log('确定')
-            var id = Date.now().toString();
-            formData.id = id;
-            var tasks = wx.getStorageSync('tasks') || []
-            tasks.unshift(formData)
-            wx.setStorageSync('tasks', tasks)
-            wx.setStorage({
-              key: id,
-              data: formData,
-              success: function (res) {
-                console.log('异步保存成功')
-              }
-            })
-            wx.showToast({
-              title: '发布成功',
-              icon: 'success',
-              duration: 3000
-            });
-            wx.switchTab({
-              url: '/pages/index/index'
-            });
-            wx.request({
-              url: 'http://localhost:8080/mvc/postJson',
-              data: formData,
-              //JSON.stringify(obj), 
-              method: 'POST',
-              header: {
-                //'Content-Type': 'application/json'
-                'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
-              },
-              success: function (res) {
-                console.log(res.data);
-              }
-            })
-
-  
-          } else {
-            console.log('取消')
-          }
+    var formData = e.detail.value;
+    wx.showModal({
+      title: '确定注册',
+      content: '注册后充值保证金后方可发单、接单！',
+      confirmText: "确定",
+      cancelText: "取消",
+      success: function (res) {
+        console.log(res);
+        if (res.confirm) {
+          console.log('确定')
+          var id = Date.now().toString();
+          formData.id = id;
+          var tasks = wx.getStorageSync('tasks') || []
+          tasks.unshift(formData)
+          wx.setStorageSync('tasks', tasks)
+          wx.setStorage({
+            key: id,
+            data: formData,
+            success: function (res) {
+              console.log('异步保存成功')
+            }
+          })
+          wx.showToast({
+            title: '发布成功',
+            icon: 'success',
+            duration: 3000
+          });
+          wx.switchTab({
+            url: '/pages/index/index'
+          });
+          wx.request({
+            url: 'http://localhost:8080/mvc/postJson',
+            data: formData,
+            //JSON.stringify(obj), 
+            method: 'POST',
+            header: {
+              //'Content-Type': 'application/json'
+              'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            },
+            success: function (res) {
+              console.log(res.data);
+            }
+          })
+        } else {
+          console.log('取消')
         }
-      });
-
-    } ,
+      }
+    });
+  },
 
   formReset: function () {
     console.log('form发生了reset事件');

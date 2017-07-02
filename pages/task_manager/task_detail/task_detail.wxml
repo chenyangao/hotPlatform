@@ -6,15 +6,15 @@
     <view class="weui-form-preview__hd">
       <view class="weui-form-preview__item">
         <view class="weui-form-preview__label">任务总金币</view>
-        <view class="weui-form-preview__value_in-hd">{{task.jobType}}</view>
+        <view class="weui-form-preview__value_in-hd">{{task.goldCoinCount}}</view>
       </view>
       <view class="weui-form-preview__item">
         <view class="weui-form-preview__label">每单金币</view>
-        <view class="weui-form-preview__value_in-hd">{{task.jobType}}</view>
+        <view class="weui-form-preview__value_in-hd">{{task.goldCoinSum}}</view>
       </view>
       <view class="weui-form-preview__item">
         <view class="weui-form-preview__label">总单数</view>
-        <view class="weui-form-preview__value_in-hd">{{task.jobType}}</view>
+        <view class="weui-form-preview__value_in-hd">{{task.taskCount}}</view>
       </view>
     </view>
 
@@ -25,7 +25,7 @@
       </view>
       <view class="weui-form-preview__item">
         <view class="weui-form-preview__label">链接</view>
-        <view class="weui-form-preview__value">{{task.jobType}}</view>
+        <view class="weui-form-preview__value">{{task.linktype}}</view>
       </view>
       <view class="weui-form-preview__item">
         <view class="weui-form-preview__label">小号要求</view>
@@ -37,15 +37,15 @@
       </view>
       <view class="weui-form-preview__item">
         <view class="weui-form-preview__label">比货</view>
-        <view class="weui-form-preview__value">{{task.userLevel}}</view>
+        <view class="weui-form-preview__value">{{task.comparativeOpt}}</view>
       </view>
       <view class="weui-form-preview__item">
         <view class="weui-form-preview__label">收藏</view>
-        <view class="weui-form-preview__value">{{task.userLevel}}</view>
+        <view class="weui-form-preview__value">{{task.favoritesOpt}}</view>
       </view>
       <view class="weui-form-preview__item">
         <view class="weui-form-preview__label">假聊</view>
-        <view class="weui-form-preview__value">{{task.userLevel}}</view>
+        <view class="weui-form-preview__value">{{task.chatOpt}}</view>
       </view>
 
       <view class="weui-form-preview__item">
@@ -54,18 +54,17 @@
       </view>
       <view class="weui-form-preview__item">
         <view class="weui-form-preview__label">垫付本金</view>
-        <view class="weui-form-preview__value">{{task.userLevel}}</view>
+        <view class="weui-form-preview__value">{{task.advancePrincipal}}</view>
       </view>
       <view class="weui-form-preview__item">
         <view class="weui-form-preview__label">每单追加本金</view>
-        <view class="weui-form-preview__value">{{task.userLevel}}</view>
+        <view class="weui-form-preview__value">{{task.additionalPrincipal}}</view>
       </view>
 
       <view class="weui-media-box__info">
-        <view class="weui-media-box__info__meta">发布人:</view>
-        <view class="weui-media-box__info__meta">发布时间：</view>
-        <view class="weui-media-box__info__meta">{{item.jobType}}</view>
-        <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>
+        <view class="weui-media-box__info__meta">发布人:160***499</view>
+        <view class="weui-media-box__info__meta">发布时间：2017年7月1日13:45</view>
+         <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>
       </view>
 
       <view class="weui-form-preview__ft">

@@ -1,66 +1,36 @@
-// terms.js
+//index.js
+//获取应用实例
+var app = getApp();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    plist: []
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  onLaunch: function () {
+    console.log('index Launching ...');
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-  
-  },
+    var that = this;
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+    setInterval(function () {
+      that.intervalMonit();
+    }, 5000);
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  go: function (e) {
+    wx.navigateTo({
+      url: '../detail/detail?index=' + e.currentTarget.id
+    });
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  intervalMonit: function () {
+    var that = this;
+    wx.request({
+      url: 'http://localhost:8080/mvc/postJson',
+      method: 'POST',
+      header: {
+         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      },
+      success: function (res) {
+        console.log(res.data);
+      }
+    })
   }
-})
+});
