@@ -22,7 +22,6 @@ Page({
     var task = wx.getStorageSync(options.id);
     task.jobType = this.data.jobTypes[task.jobType];
     task.linktype = this.data.linkTypes[task.linktype];
-
     var userLevels = task.userLevel;
     for (var i = 0; i < userLevels.length; i++) {
       task.userLevel[i] = this.data.checkboxItems[i];
