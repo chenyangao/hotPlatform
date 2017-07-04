@@ -31,7 +31,7 @@ Page({
     task.comparativeOpt = this.data.comparativeOptRadioItems[task.comparativeOpt];
     task.favoritesOpt = this.data.favoritesOptRadioItems[task.favoritesOpt];
     task.chatOpt = this.data.chatOptRadioItems[task.chatOpt];
-    task.goldCoinCount = (task.goldCoinSum + task.advancePrincipal + task.additionalPrincipal) * task.taskCount;
+    task.goldCoinCount = (parseInt(task.goldCoinSum) + parseInt(task.advancePrincipal) + parseInt(task.additionalPrincipal)) * parseInt(task.taskCount);
     that.setData({
       task: task
     })

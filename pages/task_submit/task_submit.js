@@ -59,7 +59,6 @@ Page({
     jobTypes: [{ name: '电脑单', value: '0', checked: true },
     { name: '手机单', value: '1' },
     { name: '秒单', value: '2' }],
-    countries: ["北京", "上海", "广州", "重庆", "浙江", "江苏"],
     linkTypes: [
       { name: '单', value: '0', checked: true },
       { name: '双', value: '1' }
@@ -71,7 +70,11 @@ Page({
     favoritesOptIndex: 0,
     chatOptIndex: 0,
     isAgree: false,
-    isdisabled: true
+    isdisabled: true,
+    goldCoinSum: 0,
+    advancePrincipal: 0,
+    additionalPrincipal: 0,
+    taskCount: 0
   },
 
   /**
@@ -205,31 +208,39 @@ Page({
       taskTimeIndex: e.detail.value
     })
   },
+  
   bindComparativeOptChange: function (e) {
     console.log('picker comparativeOpt 发生选择改变，携带值为', e.detail.value);
     this.setData({
       comparativeOptIndex: e.detail.value
     })
   },
+
   bindfavoritesOptChange: function (e) {
     console.log('picker favoritesOpt 发生选择改变，携带值为', e.detail.value);
     this.setData({
       favoritesOptIndex: e.detail.value
     })
   },
+
   bindChatOptChange: function (e) {
     console.log('picker bindChatOptChange 发生选择改变，携带值为', e.detail.value);
     this.setData({
       chatOptIndex: e.detail.value
     })
   },
+
+ 
+
   formSubmit: function (e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     var that = this;
     var formData = e.detail.value;
+    var goldCoinCount = (parseInt(formData.goldCoinSum) + parseInt(formData.advancePrincipal) + parseInt(formData.additionalPrincipal)) * 
+    parseInt(formData.taskCount);
     wx.showModal({
-      title: '确定注册',
-      content: '注册后充值保证金后方可发单、接单！',
+      title: '确定发布',
+      content: '订单总金额！' + goldCoinCount,
       confirmText: "确定",
       cancelText: "取消",
       success: function (res) {

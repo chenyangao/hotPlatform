@@ -6,13 +6,16 @@ Page({
   data: {
     showTopTips: false,
     countries: ["北京", "上海", "广州", "重庆", "浙江", "江苏"],
+    userTypes: [{ name: '买家', value: '0', checked: true },
+    {name: '卖家', value: '1' }],
     countryIndex: 0,
     toast1Hidden: true,
     modalHidden: true,
     modalHidden2: true,
     notice_str: '',
     isAgree: false,
-    isdisabled: true
+    isdisabled: true,
+    userTypesIndex:0
   },
 
   toast1Change: function (e) {

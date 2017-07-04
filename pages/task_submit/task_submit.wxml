@@ -2,7 +2,8 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
   <form bindsubmit="formSubmit" bindreset="formReset">
     <view class="page__bd">
-      <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+      <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">订单金额:{{tip}}</view>
+
 
       <view class="weui-cells__title">任务类型</view>
       <view class="weui-cells weui-cells_after-title">
@@ -19,14 +20,14 @@
     <view class="weui-cells__title">每单金币数</view>
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__bd">
-          <input class="weui-input" name="goldCoinSum" type="digit" placeholder="输入每单的金额" />
+          <input class="weui-input" bindinput="bindKeyInput" name="goldCoinSum" type="digit" placeholder="输入每单的金额" />
         </view>
       </view>
 
     <view class="weui-cells__title">单数总量</view>
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__bd">
-          <input class="weui-input" name="taskCount" type="digit" placeholder="最多9单" />
+          <input class="weui-input" bindinput="bindKeyInput" name="taskCount" type="digit" placeholder="最多9单" />
         </view>
       </view>
 
@@ -112,7 +113,7 @@
       <view class="weui-cells__title">垫付本金</view>
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__bd">
-          <input class="weui-input" name="advancePrincipal" type="digit" placeholder="仅支持100以内的小额垫付" />
+          <input class="weui-input" name="advancePrincipal" value = "0" type="digit" placeholder="仅支持100以内的小额垫付" />
         </view>
         <view class="weui-cell__ft">
           <icon type="warn" size="23" color="#E64340"></icon>
@@ -122,7 +123,7 @@
       <view class="weui-cells__title">每单追加本金(*)</view>
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__bd">
-          <input class="weui-input" name="additionalPrincipal" type="digit" placeholder="可不追加,最小追加0.5，最大追加9" />
+          <input class="weui-input" name="additionalPrincipal" value = "0" type="digit" placeholder="可不追加,最小追加0.5，最大追加9" />
         </view>
         <view class="weui-cell__ft">
           <icon type="warn" size="23" color="#E64340"></icon>

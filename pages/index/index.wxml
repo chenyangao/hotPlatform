@@ -49,7 +49,7 @@
         <view class="weui-form-preview__hd">
           <view class="weui-form-preview__item">
             <view class="weui-form-preview__label">任务金币：</view>
-            <view class="weui-form-preview__value_in-hd">{{item.jobType}}</view>
+            <view class="weui-form-preview__value_in-hd">{{item.goldCoinCount}}</view>
           </view>
         </view>
 
@@ -64,18 +64,12 @@
           </view>
           <view class="weui-form-preview__item">
             <view class="weui-form-preview__label">任务要求：</view>
-            <view class="weui-form-preview__value">{{item.otherOpt}}</view>
+            <view class="weui-form-preview__value">{{item.comparativeOpt}}|{{item.favoritesOpt}}|{{item.chatOpt}}</view>
           </view>
-          <view class="weui-form-preview__item">
-            <view class="weui-form-preview__label">发布时间：</view>
-            <view class="weui-form-preview__value">{{item.taskTime}}</view>
-          </view>
-
+          
           <view class="weui-media-box__info">
             <view class="weui-media-box__info__meta">发布人:{{item.userInfo.nickName}}</view>
-            <view class="weui-media-box__info__meta">发布时间：</view>
-            <view class="weui-media-box__info__meta">{{item.jobType}}</view>
-            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>
+              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">发布时间：2天前</view>
           </view>
 
           <view class="weui-form-preview__ft">

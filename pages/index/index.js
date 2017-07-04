@@ -36,7 +36,7 @@ Page({
       list[i].comparativeOpt = this.data.comparativeOptRadioItems[list[i].comparativeOpt];
       list[i].favoritesOpt = this.data.favoritesOptRadioItems[list[i].favoritesOpt];
       list[i].chatOpt = this.data.chatOptRadioItems[list[i].chatOpt];
-      list[i].goldCoinCount = (list[i].goldCoinSum + list[i].advancePrincipal + list[i].additionalPrincipal) * list[i].taskCount;
+      list[i].goldCoinCount = parseInt(list[i].goldCoinSum) + parseInt(list[i].advancePrincipal) + parseInt(list[i].additionalPrincipal);
     }
     console.log("展示数据"),
       that.setData({
