@@ -185,16 +185,6 @@ Page({
     this.setData({
       jobTypesIndex: e.detail.value
     })
-
-    wx.showActionSheet({
-      itemList: ['A', 'B', 'C'],
-      success: function (res) {
-        if (!res.cancel) {
-          console.log(res.tapIndex)
-        }
-      }
-    });
-
   },
   bindlinkTypesChange: function (e) {
     console.log('picker bindlinkTypesChange 发生选择改变，携带值为', e.detail.value);

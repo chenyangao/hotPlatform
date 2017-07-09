@@ -4,17 +4,14 @@
     <view class="page__bd">
       <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">订单金额:{{tip}}</view>
 
-
       <view class="weui-cells__title">任务类型</view>
-      <view class="weui-cells weui-cells_after-title">
-
+ 
         <view class="weui-cell weui-cell_select">
           <view class="weui-cell__bd">
             <picker bindchange="bindJobTypesChange" name="jobType" value="{{jobTypesIndex}}" range="{{jobTypes}}" range-key="name">
               <view class="weui-select">{{jobTypes[jobTypesIndex].name}}</view>
             </picker>
           </view>
-        </view>
       </view>
 
     <view class="weui-cells__title">每单金币数</view>
@@ -35,7 +32,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_select">
           <view class="weui-cell__bd">
-            <picker bindchange="bindlinkTypesChange" name="linktype" value="{{linkTypesIndex}}" range="{{linkTypes}}" range-key="name">
+            <picker bindchange="bindlinkTypesChange" name="linkType" value="{{linkTypesIndex}}" range="{{linkTypes}}" range-key="name">
               <view class="weui-select">{{linkTypes[linkTypesIndex].name}}</view>
             </picker>
           </view>
@@ -104,7 +101,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell">
           <view class="weui-cell__bd">
-            <textarea class="weui-textarea" name="otherOpt" placeholder="可不填" style="height: 3.3em" />
+            <textarea class="weui-textarea" name="otherRequirement" placeholder="可不填" style="height: 3.3em" />
             <view class="weui-textarea-counter">0/100</view>
           </view>
         </view>

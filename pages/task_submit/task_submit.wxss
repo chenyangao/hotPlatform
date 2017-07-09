@@ -2,3 +2,11 @@
 .weui-form-preview{
     margin-bottom: 25px;
 }
+.weui-cells__title{
+  font-size: 17px;
+  color: #000
+}
+.weui-cell__bd{
+  font-size: 14px;
+  color: #999
+}

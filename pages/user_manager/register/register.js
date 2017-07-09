@@ -6,8 +6,7 @@ Page({
   data: {
     showTopTips: false,
     countries: ["北京", "上海", "广州", "重庆", "浙江", "江苏"],
-    userTypes: [{ name: '买家', value: '0', checked: true },
-    {name: '卖家', value: '1' }],
+    userTypes: ["买家", "卖家"],
     countryIndex: 0,
     toast1Hidden: true,
     modalHidden: true,
@@ -114,7 +113,7 @@ Page({
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     var that = this;
     var formData = e.detail.value;
-    if (e.detail.value.user_no.length > 0 && e.detail.value.password.length > 0) {
+    if (e.detail.value.phoneNumber.length > 0 && e.detail.value.password.length > 0) {
       console.log('key:' + formData.user_no);
       that.setData({
         tip: '',

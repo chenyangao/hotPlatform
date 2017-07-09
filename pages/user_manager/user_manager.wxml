@@ -1,49 +1,90 @@
 <view class="page">
-  <view bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-   </view>
-  <view class="page__bd page__bd_spacing">
-    <view class="kind-list">
-      <view class="kind-list__item" bindtap="register"> 
-        <view class="weui-flex kind-list__item-hd kind-list__item-hd_show" id="form">
-          <view class="weui-flex__item">用户管理</view>
-          <image class="kind-list__img" src="/images/icon_nav_z-index.png"></image>
+  <view class="page__bd">
+
+    <view class="weui-search-bar">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+            <icon type="clear" size="14"></icon>
+          </view>
         </view>
+        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+          <icon class="weui-icon-search" type="search" size="14"></icon>
+          <view class="weui-search-bar__text">搜索</view>
+        </label>
       </view>
-      <view class="kind-list__item">
-        <view class="weui-flex kind-list__item-hd kind-list__item-hd_show" id="form">
-          <view class="weui-flex__item">设置</view>
-          <image class="kind-list__img" src="/images/icon_nav_form.png"></image>
-        </view>
-      </view>
-      <view class="kind-list__item">
-        <view class="weui-flex kind-list__item-hd kind-list__item-hd_show" id="form">
-          <view class="weui-flex__item">个人信息</view>
-          <image class="kind-list__img" src="/images/icon_nav_nav.png"></image>
-        </view>
-      </view>
-      <view class="kind-list__item">
-        <view class="weui-flex kind-list__item-hd kind-list__item-hd_show" id="form">
-          <view class="weui-flex__item">我的金币</view>
-          <image class="kind-list__img" src="/images/icon_nav_widget.png"></image>
-        </view>
-      </view>
-      <view class="kind-list__item">
-        <view class="weui-flex kind-list__item-hd kind-list__item-hd_show" id="form">
-          <view class="weui-flex__item">提现</view>
-          <image class="kind-list__img" src="/images/icon_nav_search.png"></image>
-        </view>
-      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
     </view>
 
-    <view class="weui-footer weui-footer_fixed-bottom">
-      <view class="page__ft">
-        <image src="/images/icon_footer.png" style="width: 84px; height: 19px;">
-        </image>
-        <navigator url="" class="weui-footer__link">爆款平台</navigator>
-      </view>
-      <view class="weui-footer__text">Copyright © 2008-2016 cygeagle</view>
+    <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
+      <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">
+          <view>用户类型</view>
+        </view>
+      </navigator>
+      <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">
+          <view>名称</view>
+        </view>
+      </navigator>
+      <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">
+          <view>任务类型</view>
+        </view>
+      </navigator>
+      <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">
+          <view>提示</view>
+        </view>
+      </navigator>
     </view>
+
+    <block wx:for-items="{{list}}" wx:for-item="item" wx:key="id">
+      <view class="weui-form-preview">
+
+        <view class="weui-form-preview__hd">
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">用户类型:</view>
+            <view class="weui-form-preview__value_in-hd">{{item.goldCoinCount}}</view>
+          </view>
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">用户状态:</view>
+            <view class="weui-form-preview__value_in-hd">{{item.goldCoinCount}}</view>
+          </view>
+        </view>
+
+        <view class="weui-form-preview__bd">
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">手机号：</view>
+            <view class="weui-form-preview__value">{{item.jobType}}</view>
+          </view>
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">QQ号码(*)：</view>
+            <view class="weui-form-preview__value">{{item.userLevel}}</view>
+          </view>
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">IS名：</view>
+            <view class="weui-form-preview__value">{{item.comparativeOpt}}|{{item.favoritesOpt}}|{{item.chatOpt}}</view>
+          </view>
+
+          <view class="weui-media-box__info">
+            <view class="weui-media-box__info__meta">发布人:{{item.userInfo.nickName}}</view>
+            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">发布时间：2天前</view>
+          </view>
+
+          <view class="weui-form-preview__ft">
+            <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">直接领取</navigator>
+            <navigator url="/pages/task_manager/task_detail/task_detail?id={{item.id}}" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">查看详情</navigator>
+          </view>
+
+        </view>
+
+      </view>
+
+    </block>
+
   </view>
+
 </view>

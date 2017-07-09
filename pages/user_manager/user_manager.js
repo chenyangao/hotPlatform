@@ -1,131 +1,78 @@
-// user_manager.js
+
+
+//index.js
+//获取应用实例
 var app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    list: [
-      {
-        id: 'form',
-        name: '表单',
-        open: true,
-        pages: ['button', 'list', 'input', 'slider', 'uploader']
-      },
-      {
-        id: 'widget',
-        name: '基础组件',
-        open: false,
-        pages: ['article', 'badge', 'flex', 'footer', 'gallery', 'grid', 'icons', 'loadmore', 'panel', 'preview', 'progress']
-      },
-      {
-        id: 'feedback',
-        name: '操作反馈',
-        open: false,
-        pages: ['actionsheet', 'dialog', 'msg', 'picker', 'toast']
-      },
-      {
-        id: 'nav',
-        name: '导航相关',
-        open: false,
-        pages: ['navbar', 'tabbar']
-      },
-      {
-        id: 'search',
-        name: '搜索相关',
-        open: false,
-        pages: ['searchbar']
+    inputShowed: false,
+    inputVal: "",
+    checkboxItems: ["白号", "一星", "二星", "三星", "四星", "五星", "一钻", "二钻", "三钻", "四钻", "五钻", "一冠", "二冠"],
+    taskTimeRadioItems: ["不过滤", "十五天内接过不要", "二十天内接过不要", "三十天内接过不要"],
+    comparativeOptRadioItems: ["不货比", "货比一家", "货比二家", "货比三家", "货比四家", "货比五家"],
+    favoritesOptRadioItems: ["不收藏", "收藏",],
+    chatOptRadioItems: ["不假聊", "假聊"],
+    jobTypes: ["电脑单", "手机单", "秒单"],
+    countries: ["北京", "上海", "广州", "重庆", "浙江", "江苏"],
+    linkTypes: ["单", "双"],
+  },
+  onLoad: function () {
+    var that = this//不要漏了这句，很重要
+    console.log("加载数据"),
+      that.setData({
+        list: wx.getStorageSync("tasks"),
+      })
+  },
+  onShow: function () {
+    var that = this//不要漏了这句，很重要
+    var list = wx.getStorageSync("tasks");
+    for (var i = 0; i < list.length; i++) {
+      list[i].jobType = this.data.jobTypes[list[i].jobType];
+      list[i].linktype = this.data.linkTypes[list[i].linktype];
+
+      var userLevels = list[i].userLevel;
+      for (var j = 0; j < userLevels.length; j++) {
+        list[i].userLevel[j] = this.data.checkboxItems[j];
       }
-    ]
+      list[i].taskTime = this.data.taskTimeRadioItems[list[i].taskTime];
+      list[i].comparativeOpt = this.data.comparativeOptRadioItems[list[i].comparativeOpt];
+      list[i].favoritesOpt = this.data.favoritesOptRadioItems[list[i].favoritesOpt];
+      list[i].chatOpt = this.data.chatOptRadioItems[list[i].chatOpt];
+      list[i].goldCoinCount = parseInt(list[i].goldCoinSum) + parseInt(list[i].advancePrincipal) + parseInt(list[i].additionalPrincipal);
+    }
+    console.log("展示数据"),
+      that.setData({
+        list: list
+      })
+  },
+  showInput: function () {
+    this.setData({
+      inputShowed: true
+    });
+  },
+  hideInput: function () {
+    this.setData({
+      inputVal: "",
+      inputShowed: false
+    });
+  },
+  clearInput: function () {
+    this.setData({
+      inputVal: ""
+    });
+  },
+  inputTyping: function (e) {
+    this.setData({
+      inputVal: e.detail.value
+    });
   },
   kindToggle: function (e) {
-    var id = e.currentTarget.id, list = this.data.list;
+    var list = wx.getStorageSync("tesks");
     for (var i = 0, len = list.length; i < len; ++i) {
-      if (list[i].id == id) {
-        list[i].open = !list[i].open
-      } else {
-        list[i].open = false
-      }
+
     }
     this.setData({
       list: list
     });
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    console.log('onLoad')
-    var that = this
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      that.setData({
-        userInfo: userInfo
-      })
-    })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
-  //事件处理函数
-  bindViewTap: function () {
-    wx.navigateTo({
-      url: '../user_manager/register/register'
-    })
-  },
-  register: function () {
-    wx.navigateTo({
-      url: '../user_manager/register/register'
-    })
-  } 
-})
+  }
+});
