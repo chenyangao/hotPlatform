@@ -14,7 +14,7 @@ Page({
     notice_str: '',
     isAgree: false,
     isdisabled: true,
-    userTypesIndex:0
+    userTypesIndex: 0
   },
 
   toast1Change: function (e) {
@@ -114,7 +114,7 @@ Page({
     var that = this;
     var formData = e.detail.value;
     if (e.detail.value.phoneNumber.length > 0 && e.detail.value.password.length > 0) {
-      console.log('key:' + formData.user_no);
+      console.log('key:' + formData.phoneNumber);
       that.setData({
         tip: '',
         showTopTips: false
@@ -128,12 +128,25 @@ Page({
           console.log(res);
           if (res.confirm) {
             console.log('确定')
+            var id = Date.now().toString();
+            formData.id = id;
+            var userlist = wx.getStorageSync('userlist') || []
+            userlist.unshift(formData)
+            wx.setStorageSync('userlist', userlist)
             wx.setStorage({
-              key: formData.user_no,
-              data: formData
+              key: id,
+              data: formData,
+              success: function (res) {
+                console.log('异步保存成功')
+              }
             })
+            wx.showToast({
+              title: '发布成功',
+              icon: 'success',
+              duration: 3000
+            });
             wx.request({
-              url: 'http://localhost:8080/mvc/postJson',
+              url: 'http://localhost:8080/raisehot/user/userRegister',
               data: formData,
               //JSON.stringify(obj), 
               method: 'POST',
@@ -143,16 +156,10 @@ Page({
               },
               success: function (res) {
                 console.log(res.data);
-                that.modalTap();
               }
             })
-            wx.showToast({
-              title: '保存成功',
-              icon: 'success',
-              duration: 3000
-            });
             wx.navigateTo({
-              url: 'pages/index/index'
+              url: '/pages/user_manager/user_manager'
             });
           } else {
             console.log('取消')
@@ -169,7 +176,6 @@ Page({
   },
   formReset: function () {
     console.log('form发生了reset事件');
-    this.modalTap2();
   },
   bindAgreeChange: function (e) {
     this.setData({
