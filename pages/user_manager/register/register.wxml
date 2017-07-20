@@ -39,10 +39,9 @@
           <input class="weui-input" type="digit" name="identifyingCode" maxlength="4" placeholder="填写收到的4位验证妈" />
         </view>
         <view class="weui-cell__ft">
-          <view class="weui-vcode-btn">获取验证码</view>
+          <view bindsubmit="getValidationCode"  class="weui-vcode-btn">获取验证码</view>
         </view>
       </view>
-
 
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">

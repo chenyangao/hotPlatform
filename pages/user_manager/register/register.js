@@ -146,12 +146,11 @@ Page({
               duration: 3000
             });
             wx.request({
-              url: 'http://localhost:8080/raisehot/user/userRegister',
+              url: 'http://localhost:8080/raisehot/user/userregister.do',
               data: formData,
               //JSON.stringify(obj), 
               method: 'POST',
               header: {
-                //'Content-Type': 'application/json'
                 'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
               },
               success: function (res) {
@@ -184,5 +183,8 @@ Page({
     this.setData({
       isdisabled: !this.data.isAgree
     })
+  },
+  getValidationCode:function(e){
+    console.log('getValidationCode携带数据为：', e.detail.value)
   }
 })
