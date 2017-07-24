@@ -65,6 +65,7 @@ Page({
   },
   data: {
     tabs: ["已发布的任务", "待办理的任务", "进行中的任务"],
+    grids: [0, 1, 2, 3, 4, 5, 6, 7, 8],
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0

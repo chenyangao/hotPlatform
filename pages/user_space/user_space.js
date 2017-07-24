@@ -127,5 +127,10 @@ Page({
     wx.navigateTo({
       url: '../user_manager/register/register'
     })
+  },
+  preview: function () {
+    wx.navigateTo({
+      url: '../user_manager/preview/preview'
+    })
   }
 })

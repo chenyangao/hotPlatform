@@ -3,7 +3,8 @@
 var app = getApp();
 Page({
   data: {
-    plist: []
+    plist: [],
+    url: 'http://localhost:8080/raisehot/user/',
   },
   onLaunch: function () {
     console.log('index Launching ...');
@@ -22,9 +23,13 @@ Page({
   },
   intervalMonit: function () {
     var that = this;
+    var url = that.data.url;
     wx.request({
-      url: 'http://localhost:8080/mvc/postJson',
+      url: url+'preview.do',
       method: 'POST',
+      data: {
+        id: '338703203371581440'
+      },
       header: {
          'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
       },

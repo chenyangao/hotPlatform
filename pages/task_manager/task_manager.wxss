@@ -1,1 +1,5 @@
 /* task_manager.wxss */
+.weui-grid{
+  width: 50%;
+  height: 33.3%
+}

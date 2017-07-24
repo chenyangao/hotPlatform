@@ -60,5 +60,12 @@ Page({
     this.setData({
       list: list
     });
+  },
+  register: function () {
+    wx.navigateTo({
+      url: 'register/register'
+    })
   }
+
+
 });

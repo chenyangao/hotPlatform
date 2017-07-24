@@ -28,12 +28,16 @@
         <view class="weui-cell__bd">
           <view>名称</view>
         </view>
-      </navigator> 
+      </navigator>
       <navigator url="" class="weui-cell" hover-class="weui-cell_active">
         <view class="weui-cell__bd">
           <view>提示</view>
         </view>
       </navigator>
+    </view>
+
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="register">新增用户</button>
     </view>
 
     <block wx:for-items="{{list}}" wx:for-item="item" wx:key="id">
@@ -46,7 +50,7 @@
           </view>
           <view class="weui-form-preview__item">
             <view class="weui-form-preview__label">用户状态:</view>
-            <view class="weui-form-preview__value_in-hd">{{item.userType}}</view>
+            <view class="weui-form-preview__value_in-hd">{{item.status}}</view>
           </view>
         </view>
 
@@ -71,7 +75,7 @@
 
           <view class="weui-form-preview__ft">
             <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">修改</navigator>
-            <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">删除</navigator>
+            <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">启用/停用</navigator>
             <navigator url="/pages/task_manager/task_detail/task_detail?id={{item.id}}" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">查看详情</navigator>
           </view>
 

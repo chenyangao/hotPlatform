@@ -249,14 +249,6 @@ Page({
               console.log('异步保存成功')
             }
           })
-          wx.showToast({
-            title: '发布成功',
-            icon: 'success',
-            duration: 3000
-          });
-          wx.switchTab({
-            url: '/pages/index/index'
-          });
           wx.request({
             url: 'http://localhost:8080/mvc/postJson',
             data: formData,
@@ -268,6 +260,14 @@ Page({
             },
             success: function (res) {
               console.log(res.data);
+              wx.showToast({
+                title: '发布成功',
+                icon: 'success',
+                duration: 3000
+              });
+              wx.switchTab({
+                url: '/pages/index/index'
+              });
             }
           })
         } else {

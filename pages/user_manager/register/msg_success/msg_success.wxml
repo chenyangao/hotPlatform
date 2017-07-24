@@ -1,0 +1,26 @@
+<!--msg_success.wxml-->
+<view class="page">
+    <view class="weui-msg">
+        <view class="weui-msg__icon-area">
+            <icon type="success" size="93"></icon>
+        </view>
+        <view class="weui-msg__text-area">
+            <view class="weui-msg__title">注册成功</view>
+            <view class="weui-msg__desc">恭喜您成功注册爆款平台，您是卖家用户，可以充值后在平台发布任务，请看发布注意事项<navigator url="" class="weui-msg__link">注意事项</navigator></view>
+        </view>
+        <view class="weui-msg__opr-area">
+            <view class="weui-btn-area">
+                <button class="weui-btn" type="primary">充值中心</button>
+                <button class="weui-btn" type="default">个人信息</button>
+            </view>
+        </view>
+        <view class="weui-msg__extra-area">
+            <view class="weui-footer">
+                <view class="weui-footer__links">
+                    <navigator url="" class="weui-footer__link">联系管理员</navigator>
+                </view>
+                <view class="weui-footer__text">Copyright © 2008-2016 weui.io</view>
+            </view>
+        </view>
+    </view>
+</view>

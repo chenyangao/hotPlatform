@@ -14,6 +14,10 @@ Page({
     notice_str: '',
     isAgree: false,
     isdisabled: true,
+    phoneNumber: '',
+    password: '',
+    passwordAgain: '',
+    url: 'http://localhost:8080/raisehot/user/',
     userTypesIndex: 0
   },
 
@@ -141,12 +145,13 @@ Page({
               }
             })
             wx.showToast({
-              title: '发布成功',
-              icon: 'success',
+              title: '信息提交中',
+              icon: 'loading',
               duration: 3000
             });
+            var url = that.data.url;
             wx.request({
-              url: 'http://localhost:8080/raisehot/user/userregister.do',
+              url: url + 'register.do',
               data: formData,
               //JSON.stringify(obj), 
               method: 'POST',
@@ -155,11 +160,16 @@ Page({
               },
               success: function (res) {
                 console.log(res.data);
+                wx.navigateTo({
+                  url: 'msg_success/msg_success'
+                });
+              },
+              fail:function(res){
+                wx.navigateTo({
+                  url: 'msg_fail/msg_fail'
+                });
               }
             })
-            wx.navigateTo({
-              url: '/pages/user_manager/user_manager'
-            });
           } else {
             console.log('取消')
           }
@@ -184,7 +194,47 @@ Page({
       isdisabled: !this.data.isAgree
     })
   },
-  getValidationCode:function(e){
+  getValidationCode: function (e) {
+    var that = this;
+    var url = that.data.url
+    wx.request({
+      url: url + 'sendmessage.do',
+      data: { phoneNumber: phoneNumber },
+      //JSON.stringify(obj), 
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      },
+      success: function (res) {
+        console.log(res.data);
+      }
+    })
     console.log('getValidationCode携带数据为：', e.detail.value)
+  },
+
+  phoneNumberBlur: function (e) {
+    this.data.phoneNumber = e.detail.value
+  },
+  passwordBlur: function (e) {
+    var passwordValue = e.detail.value;
+    if (passwordValue.length > 0) {
+      this.data.password = e.detail.value
+    }
+    if (this.data.password.length > 0 && this.data.passwordAgain.length > 0) {
+      if (this.data.password.password != this.data.passwordAgain) {
+        console.log('密码不一样')
+      }
+    }
+  },
+  passwordAgainBlur: function (e) {
+    var passwordAgainValue = e.detail.value;
+    if (passwordAgainValue.length > 0) {
+      this.data.passwordAgainValue = e.detail.value
+    }
+    if (this.data.password.length > 0 && this.data.passwordAgain.length > 0) {
+      if (this.data.password != this.data.passwordAgain) {
+        console.log('密码不一样')
+      }
+    }
   }
 })
