@@ -4,36 +4,42 @@ Page({
    * 页面的初始数据
    */
   data: {
-    checkboxItems: ["白号", "一星", "二星", "三星", "四星", "五星", "一钻", "二钻", "三钻", "四钻", "五钻", "一冠", "二冠"],
-    taskTimeRadioItems: ["不过滤", "十五天内接过不要", "二十天内接过不要", "三十天内接过不要"],
-    comparativeOptRadioItems: ["不货比", "货比一家", "货比二家", "货比三家", "货比四家", "货比五家"],
-    favoritesOptRadioItems: ["不收藏", "收藏",],
-    chatOptRadioItems: ["不假聊", "假聊"],
-    jobTypes: ["电脑单", "手机单", "秒单"],
-    countries: ["北京", "上海", "广州", "重庆", "浙江", "江苏"],
-    linkTypes: ["单", "双"],
+    url: 'http://localhost:8080/raisehot/user/'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    var task = wx.getStorageSync(options.id);
-    task.jobType = this.data.jobTypes[task.jobType];
-    task.linktype = this.data.linkTypes[task.linktype];
-    var userLevels = task.userLevel;
-    for (var i = 0; i < userLevels.length; i++) {
-      task.userLevel[i] = this.data.checkboxItems[i];
-    }
-    task.taskTime = this.data.taskTimeRadioItems[task.taskTime];
-    task.comparativeOpt = this.data.comparativeOptRadioItems[task.comparativeOpt];
-    task.favoritesOpt = this.data.favoritesOptRadioItems[task.favoritesOpt];
-    task.chatOpt = this.data.chatOptRadioItems[task.chatOpt];
-    task.goldCoinCount = (parseInt(task.goldCoinSum) + parseInt(task.advancePrincipal) + parseInt(task.additionalPrincipal)) * parseInt(task.taskCount);
-    that.setData({
-      task: task
+    var that = this//不要漏了这句，很重要
+    //var user = wx.getStorageSync(options.id);
+    var url = that.data.url;
+    var data = {id:options.id};
+    wx.request({
+      url: url + 'preview.do',
+      data: data,
+      //JSON.stringify(obj), 
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      },
+      success: function (res) {
+        console.log(res);
+        var user = res.data;
+        console.log("展示数据"),
+          that.setData({
+            user: user
+          })
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '加载异常',
+          icon: 'loading',
+          duration: 3000
+        });
+      }
     })
+
   },
 
   /**

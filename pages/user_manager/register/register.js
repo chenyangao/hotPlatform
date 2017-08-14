@@ -141,7 +141,7 @@ Page({
               key: id,
               data: formData,
               success: function (res) {
-                console.log('异步保存成功')
+                console.log('异步保存成功'+res)
               }
             })
             wx.showToast({
@@ -159,6 +159,7 @@ Page({
                 'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
               },
               success: function (res) {
+                console.log('服务器保存成功' + res)
                 console.log(res.data);
                 wx.navigateTo({
                   url: 'msg_success/msg_success'
